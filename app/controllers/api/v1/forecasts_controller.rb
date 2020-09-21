@@ -29,6 +29,8 @@ class Api::V1::ForecastsController < ApplicationController
 
     forecast_data = JSON.parse(weather_response.body, symbolize_names: true)
     current_forecast = CurrentForecast.new(forecast_data)
+    # hourly_forecast = HourlyForecast.new(forecast_data)
+    # daily_forecast = DailyForecast.new(forecast_data)
 
     # render json: weather_json
   end
