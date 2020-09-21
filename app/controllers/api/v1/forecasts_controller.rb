@@ -23,10 +23,14 @@ class Api::V1::ForecastsController < ApplicationController
     weather_response = weather_conn.get('data/2.5/onecall') do |f|
       f.params[:lat] = lat
       f.params[:lon] = lon
+      f.params[:exclude] = 'minutely,alerts'
     end
 
     weather_json = JSON.parse(weather_response.body, symbolize_names: true)
 
-    render json: weather_json
+    binding.pry
+    # forecast = weather_json
+
+    # render json: weather_json
   end
 end
