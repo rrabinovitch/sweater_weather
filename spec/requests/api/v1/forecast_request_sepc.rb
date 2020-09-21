@@ -2,9 +2,13 @@ require 'rails_helper'
 
 RSpec.describe 'Forecast request' do
   describe 'can obtain a city\'s forecast, including:' do
-    before :each do
+    it 'successful response' do# before :each do
       # pretty sure no objects need to be created
       get '/api/v1/forecast?location=denver,co'
+      expect(response).to be_successful
+      # expect(response.content_type).to eq('application/json')
+      # => returning "application/json; charset=utf-8" for some reason
+      @forecast_json = JSON.parse(response.body, symbolize_names: true)
     end
 
     it 'weather summary' do
@@ -42,7 +46,5 @@ RSpec.describe 'Forecast request' do
     it '5-day forecast, including summary, precipitation, high temp, and low temp' do
 
     end
-
-
   end
 end
