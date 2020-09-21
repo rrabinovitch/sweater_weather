@@ -49,4 +49,4 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'figaro'
 gem 'fast_jsonapi'
-«gem 'table_print'
+gem 'table_print'
