@@ -12,9 +12,9 @@ class Api::V1::ForecastsController < ApplicationController
 
     geo_json = JSON.parse(geo_response.body, symbolize_names: true)
 
-    lat_lon = geo_json[:results][0][:locations][0][:latLng]
-    lat = lat_lon[:lat]
-    lon = lat_lon[:lng]
+    coordinates = geo_json[:results][0][:locations][0][:latLng]
+    lat = coordinates[:lat]
+    lon = coordinates[:lng]
 
     weather_conn = Faraday.new(url: 'https://api.openweathermap.org/') do |f|
       f.params[:appid] = ENV['OPEN_WEATHER_API_KEY']
@@ -24,12 +24,11 @@ class Api::V1::ForecastsController < ApplicationController
       f.params[:lat] = lat
       f.params[:lon] = lon
       f.params[:exclude] = 'minutely,alerts'
+      f.params[:units] = 'imperial'
     end
 
-    weather_json = JSON.parse(weather_response.body, symbolize_names: true)
-
-    binding.pry
-    # forecast = weather_json
+    forecast_data = JSON.parse(weather_response.body, symbolize_names: true)
+    current_forecast = CurrentForecast.new(forecast_data)
 
     # render json: weather_json
   end
