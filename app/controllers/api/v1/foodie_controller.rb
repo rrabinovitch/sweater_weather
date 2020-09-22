@@ -46,7 +46,7 @@ class Api::V1::FoodieController < ApplicationController
     end_forecast = WEATHER_SERVICE.forecast_by_coordinates(end_coordinates)
     toa_forecast_data = end_forecast[:hourly][travel_time_hr - 1] # toa = time of arrival
     toa_forecast = HourlyForecast.new(toa_forecast_data)
-    binding.pry
+
     response = {
       "data": {
         "id": "null",
@@ -68,7 +68,8 @@ class Api::V1::FoodieController < ApplicationController
         }
       }
     }
-    binding.pry
+
+    render json: response
   end
 
   private
