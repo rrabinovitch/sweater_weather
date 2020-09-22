@@ -12,7 +12,7 @@ RSpec.describe 'Foodie route request' do
     foodie_route_json = JSON.parse(response.body, symbolize_names: true)
 
     expect(foodie_route_json[:data]).to have_key(:id)
-    expect(foodie_route_json[:data][:type]).to eq("foodie_route")
+    expect(foodie_route_json[:data][:type]).to eq("foodie")
     # expect(foodie_route_json[:data][:attributes]).to have_key(:)
   end
 end
