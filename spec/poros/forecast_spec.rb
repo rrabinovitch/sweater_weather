@@ -3,7 +3,13 @@ require 'rails_helper'
 RSpec.describe Forecast do
   it 'has attributes' do
     ### MOVE DATA TO FIXTURE FILE OR USE CASSETTE?
-    data = {:lat=>39.74,
+    location_data = {:adminArea5=>"Denver",
+        :adminArea3=>"CO",
+        :adminArea1=>"US",
+        :latLng=>{:lat=>39.738453, :lng=>-104.984853}}
+    location = Location.new(location_data)
+
+    forecast_data = {:lat=>39.74,
      :lon=>-104.98,
      :timezone=>"America/Denver",
      :timezone_offset=>-21600,
@@ -717,8 +723,11 @@ RSpec.describe Forecast do
         :pop=>0,
         :uvi=>5.46}]}
 
-    forecast = Forecast.new(data)
+    forecast = Forecast.new(location, forecast_data)
+
     expect(forecast).to be_a(Forecast)
+    expect(forecast.id).to eq(nil)
+    expect(forecast.location).to be_a(Location)
     expect(forecast.current).to be_a(CurrentForecast)
     expect(forecast.hourly.size).to eq(8)
     expect(forecast.hourly.first).to be_an(HourlyForecast)
