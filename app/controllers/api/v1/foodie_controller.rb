@@ -19,8 +19,11 @@ class Api::V1::FoodieController < ApplicationController
     travel_time = route_json[:route][:legs].first[:time] # in seconds
 
 
-    binding.pry
     # use end params and GeoService to obtain lat/long of end params
+    end_location = FORECAST_FACADE.get_location(end_params)
+    end_coordinates = end_location.coordinates
+    
+    binding.pry
     # use lat/long for end params and search params via ZomatoService to obtain restaurant name and address
     # calculate time of arrival??
     # use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
