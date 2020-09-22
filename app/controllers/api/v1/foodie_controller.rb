@@ -27,8 +27,8 @@ class Api::V1::FoodieController < ApplicationController
     #
     # zomato_json = JSON.parse(zomato_response.body, symbolize_names: true)
 
-    restaurant_name = zomato_json[:restaurants].first[:restaurant][:name]
-    restaurant_address = zomato_json[:restaurants].first[:restaurant][:location][:address]
+    # restaurant_name = zomato_json[:restaurants].first[:restaurant][:name]
+    # restaurant_address = zomato_json[:restaurants].first[:restaurant][:location][:address]
 
 
     ##### use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival

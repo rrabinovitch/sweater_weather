@@ -10,7 +10,7 @@ class FoodieFacade
     travel_time_in_hrs = get_travel_time_in_hrs(start_params, end_params)
     end_location = get_end_location(end_params)
     end_coordinates = end_location.coordinates
-    restaurant = get_restaurant(end_coordinaes, search_params)
+    restaurant = get_restaurant(end_coordinates, search_params)
   end
 
   def get_travel_time_in_hrs(start_params, end_params)
