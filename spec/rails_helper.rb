@@ -1,5 +1,18 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 require 'spec_helper'
+require 'simplecov'
+SimpleCov.start 'rails' do
+  add_filter '/bin/'
+  add_filter '/app/channels/'
+  add_filter '/app/models/application_record.rb'
+  add_filter '/app/controllers/application_controller.rb'
+  add_filter '/app/jobs/'
+  add_filter '/app/mailers/'
+  add_filter '/app/serializers'
+  add_filter '/app/views'
+  add_filter '/db/'
+  add_filter '/spec/' # for rspec
+end
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../config/environment', __dir__)
 # Prevent database truncation if the environment is production
