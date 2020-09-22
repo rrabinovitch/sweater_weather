@@ -2,7 +2,10 @@ class GeoService
   def location_data(location)
     response = conn.get('geocoding/v1/address/') do |f|
       f.params[:location] = location
+      f.params[:maxResults] = 1
     end
+
+    parse_json(response)[:results][0][:locations][0]
   end
 
   private
