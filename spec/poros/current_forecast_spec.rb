@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe CurrentForecast do
-  it 'it has attributes' do
+  it 'has attributes' do
     data = {:dt=>1600750707,
        :sunrise=>1600692427,
        :sunset=>1600736311,
