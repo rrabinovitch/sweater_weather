@@ -32,8 +32,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
-  gem 'simplecov'
-  gem 'shoulda-matchers'
   gem 'factory_bot_rails'
 end
 
@@ -47,6 +45,8 @@ group :development do
 end
 
 group :test do
+  gem 'simplecov'
+  gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
 end
