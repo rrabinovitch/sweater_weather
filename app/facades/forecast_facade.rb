@@ -4,7 +4,7 @@ class ForecastFacade
     @weather_service ||= WeatherService.new
   end
 
-  def self.get_forecast(location)
+  def get_forecast(location)
     coordinates = @geo_service.location_coordinates(location)
     ### return value should be coordinates to then pass as args for forecast retrieval method
 
