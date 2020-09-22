@@ -17,6 +17,5 @@ RSpec.describe ForecastFacade do
     expect(forecast.current).to be_a(CurrentForecast)
     expect(forecast.daily.first).to be_a(DailyForecast)
     expect(forecast.hourly.first).to be_a(HourlyForecast)
-    # binding.pry
   end
 end
