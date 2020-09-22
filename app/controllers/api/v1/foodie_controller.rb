@@ -14,18 +14,18 @@ class Api::V1::FoodieController < ApplicationController
     # end_coordinates = end_location.coordinates
 
     ##### use lat/long for end params and search params via ZomatoService to obtain restaurant name and address
-    zomato_conn = Faraday.new(url: 'https://developers.zomato.com/') do |f|
-      f.headers["user-key"] = ENV['ZOMATO_API_KEY']
-    end
-
-    zomato_response = zomato_conn.get('api/v2.1/search') do |f|
-      f.params[:q] = search_params
-      f.params[:count] = 1
-      f.params[:lat] = end_coordinates[:lat]
-      f.params[:lon] = end_coordinates[:lng]
-    end
-
-    zomato_json = JSON.parse(zomato_response.body, symbolize_names: true)
+    # zomato_conn = Faraday.new(url: 'https://developers.zomato.com/') do |f|
+    #   f.headers["user-key"] = ENV['ZOMATO_API_KEY']
+    # end
+    #
+    # zomato_response = zomato_conn.get('api/v2.1/search') do |f|
+    #   f.params[:q] = search_params
+    #   f.params[:count] = 1
+    #   f.params[:lat] = end_coordinates[:lat]
+    #   f.params[:lon] = end_coordinates[:lng]
+    # end
+    #
+    # zomato_json = JSON.parse(zomato_response.body, symbolize_names: true)
 
     restaurant_name = zomato_json[:restaurants].first[:restaurant][:name]
     restaurant_address = zomato_json[:restaurants].first[:restaurant][:location][:address]
