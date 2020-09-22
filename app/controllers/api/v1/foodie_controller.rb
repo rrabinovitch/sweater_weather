@@ -4,19 +4,9 @@ class Api::V1::FoodieController < ApplicationController
     end_params = params[:end]
     search_params = params[:search]
 
-    travel_time = FOODIE_FACADE.get_travel_time(start_params, end_params)
     ##### use start and end params as is to get directions and travel time
-    # route_conn = Faraday.new(url: 'http://www.mapquestapi.com/') do |f|
-    #   f.params[:key] = ENV['MAPQUEST_API_KEY']
-    # end
-    #
-    # route_response = route_conn.get('directions/v2/route') do |f|
-    #   f.params[:from] = start_params
-    #   f.params[:to] = end_params
-    # end
-    #
-    # route_json = JSON.parse(route_response.body, symbolize_names: true)
-    #
+    travel_time_in_hrs = FOODIE_FACADE.get_travel_time_in_hrs(start_params, end_params)
+
     # travel_time_sec = route_json[:route][:legs].first[:time] # in seconds
     # travel_time_min = (travel_time_sec / 60) # in minutes (may not need)
     # travel_time_hr = (travel_time_min / 60)
