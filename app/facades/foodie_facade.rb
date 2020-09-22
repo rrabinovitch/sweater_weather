@@ -3,7 +3,7 @@ class FoodieFacade
     @route_service ||= RouteService.new
     @geo_service ||= GeoService.new
     @zomato_service ||= ZomatoService.new
-    # @weather_service ||= WeatherService.new
+    @weather_service ||= WeatherService.new
   end
 
   def get_foodie_route_info(start_params, end_params, search_params)
@@ -11,6 +11,8 @@ class FoodieFacade
     end_location = get_end_location(end_params)
     end_coordinates = end_location.coordinates
     restaurant = get_restaurant(end_coordinates, search_params)
+    toa_forecast = get_toa_forecast(end_coordinates, travel_time_in_hrs)
+    binding.pry
   end
 
   def get_travel_time_in_hrs(start_params, end_params)
@@ -27,5 +29,10 @@ class FoodieFacade
   def get_restaurant(end_coordinates, search_params)
     restaurant_data = @zomato_service.get_restaurant_data(end_coordinates, search_params)
     Restaurant.new(restaurant_data)
+  end
+
+  def get_toa_forecast(end_coordinates, travel_time_in_hrs) # toa = time of arrival
+    forecast_data = @weather_service.forecast_by_coordinates(end_coordinates)[:hourly][travel_time_in_hrs - 1]
+    HourlyForecast.new(forecast_data)
   end
 end

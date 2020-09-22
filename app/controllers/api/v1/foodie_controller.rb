@@ -32,32 +32,32 @@ class Api::V1::FoodieController < ApplicationController
 
 
     ##### use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
-    end_forecast = WEATHER_SERVICE.forecast_by_coordinates(end_coordinates)
-    toa_forecast_data = end_forecast[:hourly][travel_time_hr - 1] # toa = time of arrival
-    toa_forecast = HourlyForecast.new(toa_forecast_data)
+    # end_forecast = WEATHER_SERVICE.forecast_by_coordinates(end_coordinates)
+    # toa_forecast_data = end_forecast[:hourly][travel_time_hr - 1] # toa = time of arrival
+    # toa_forecast = HourlyForecast.new(toa_forecast_data)
 
     ##### create response hash
-    response = {
-      "data": {
-        "id": "null",
-        "type": "foodie",
-        "attributes": {
-          "end_location": {
-            "city": end_location.city,
-            "state": end_location.state
-          },
-          "travel_time": "approximately #{travel_time_hr} hour(s)",
-          "forecast": {
-            "summary": toa_forecast.summary,
-            "temperature": toa_forecast.temp
-          },
-          "restaurant": {
-            "name": restaurant_name,
-            "address": restaurant_address
-          }
-        }
-      }
-    }
+    # response = {
+    #   "data": {
+    #     "id": "null",
+    #     "type": "foodie",
+    #     "attributes": {
+    #       "end_location": {
+    #         "city": end_location.city,
+    #         "state": end_location.state
+    #       },
+    #       "travel_time": "approximately #{travel_time_hr} hour(s)",
+    #       "forecast": {
+    #         "summary": toa_forecast.summary,
+    #         "temperature": toa_forecast.temp
+    #       },
+    #       "restaurant": {
+    #         "name": restaurant_name,
+    #         "address": restaurant_address
+    #       }
+    #     }
+    #   }
+    # }
 
     render json: response
   end
