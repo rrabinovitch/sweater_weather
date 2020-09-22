@@ -18,6 +18,7 @@ class Api::V1::FoodieController < ApplicationController
 
     travel_time_sec = route_json[:route][:legs].first[:time] # in seconds
     travel_time_min = (travel_time_sec / 60) # in minutes (may not need)
+    travel_time_hr = (travel_time_min / 60)
 
     # use end params and GeoService to obtain lat/long of end params
     end_location = FORECAST_FACADE.get_location(end_params)
@@ -42,9 +43,31 @@ class Api::V1::FoodieController < ApplicationController
 
 
     # use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
-
-
-
+    end_forecast = WEATHER_SERVICE.forecast_by_coordinates(end_coordinates)
+    toa_forecast_data = end_forecast[:hourly][travel_time_hr - 1] # toa = time of arrival
+    toa_forecast = HourlyForecast.new(toa_forecast_data)
+    binding.pry
+    response = {
+      "data": {
+        "id": "null",
+        "type": "foodie",
+        "attributes": {
+          "end_location": {
+            "city": end_location.city,
+            "state": end_location.state
+          },
+          "travel_time": "approximately #{travel_time_hr} hour(s)",
+          "forecast": {
+            "summary": toa_forecast.summary,
+            "temperature": toa_forecast.temp
+          },
+          "restaurant": {
+            "name": restaurant_name,
+            "address": restaurant_address
+          }
+        }
+      }
+    }
     binding.pry
   end
 
@@ -52,4 +75,6 @@ class Api::V1::FoodieController < ApplicationController
 
   FORECAST_FACADE ||= ForecastFacade.new
   # if there was more time and this challenge was taking place in isolation without me having had already set up the facade specifically for the project, I would have named this differently since in this context it's only being used for geolocation
+
+  WEATHER_SERVICE ||= WeatherService.new
 end
