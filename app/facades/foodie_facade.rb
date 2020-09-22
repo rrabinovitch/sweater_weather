@@ -12,7 +12,28 @@ class FoodieFacade
     end_coordinates = end_location.coordinates
     restaurant = get_restaurant(end_coordinates, search_params)
     toa_forecast = get_toa_forecast(end_coordinates, travel_time_in_hrs)
-    binding.pry
+
+    response = {
+      "data": {
+        "id": "null",
+        "type": "foodie",
+        "attributes": {
+          "end_location": {
+            "city": end_location.city,
+            "state": end_location.state
+          },
+          "travel_time": "approximately #{travel_time_in_hrs} hour(s)",
+          "forecast": {
+            "summary": toa_forecast.summary,
+            "temperature": toa_forecast.temp
+          },
+          "restaurant": {
+            "name": restaurant.name,
+            "address": restaurant.address
+          }
+        }
+      }
+    }
   end
 
   def get_travel_time_in_hrs(start_params, end_params)
