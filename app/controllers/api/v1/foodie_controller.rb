@@ -4,16 +4,14 @@ class Api::V1::FoodieController < ApplicationController
     end_params = params[:end]
     search_params = params[:search]
 
-    ##### use start and end params as is to get directions and travel time
-    travel_time_in_hrs = FOODIE_FACADE.get_travel_time_in_hrs(start_params, end_params)
+    FOODIE_FACADE.get_foodie_route_info(start_params, end_params, search_params)
 
-    # travel_time_sec = route_json[:route][:legs].first[:time] # in seconds
-    # travel_time_min = (travel_time_sec / 60) # in minutes (may not need)
-    # travel_time_hr = (travel_time_min / 60)
+    ##### use start and end params as is to get directions and travel time
+    # travel_time_in_hrs = FOODIE_FACADE.get_travel_time_in_hrs(start_params, end_params)
 
     ##### use end params and GeoService to obtain lat/long of end params
-    end_location = FORECAST_FACADE.get_location(end_params)
-    end_coordinates = end_location.coordinates
+    # end_location = FORECAST_FACADE.get_location(end_params)
+    # end_coordinates = end_location.coordinates
 
     ##### use lat/long for end params and search params via ZomatoService to obtain restaurant name and address
     zomato_conn = Faraday.new(url: 'https://developers.zomato.com/') do |f|
