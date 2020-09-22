@@ -23,7 +23,7 @@ class FoodieFacade
     Location.new(location_data)
   end
 
-  def get_restaurant_info(end_coordinates, search_params)
-    restaurant_data = @zomato_service.restaurant_data(end_coordinates, search_params)
+  def get_restaurant(end_coordinates, search_params)
+    restaurant_data = @zomato_service.get_restaurant_data(end_coordinates, search_params)
   end
 end
