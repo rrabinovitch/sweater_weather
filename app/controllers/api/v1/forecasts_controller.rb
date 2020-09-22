@@ -2,7 +2,7 @@ class Api::V1::ForecastsController < ApplicationController
   def show
     location = params[:location]
 
-    forecast = ForecastFacade.get_forecast(location)
+    forecast = FORECAST_FACADE.get_forecast(location)
 
     # geo_conn = Faraday.new(url: 'http://www.mapquestapi.com/') do |f|
     #   f.params[:key] = ENV['MAPQUEST_API_KEY']
@@ -42,4 +42,8 @@ class Api::V1::ForecastsController < ApplicationController
 
     render json: forecast
   end
+
+  private
+
+  FORECAST_FACADE ||= ForecastFacade.new
 end
