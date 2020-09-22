@@ -6,7 +6,8 @@ class FoodieFacade
     @weather_service ||= WeatherService.new
   end
 
-  def method_name
+  def get_travel_time(start_params, end_params)
+    route_data = @route_service.get_route_data(start_params, end_params)
 
   end
 end

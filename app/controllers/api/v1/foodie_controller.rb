@@ -4,27 +4,28 @@ class Api::V1::FoodieController < ApplicationController
     end_params = params[:end]
     search_params = params[:search]
 
-    # use start and end params as is to get directions and travel time
-    route_conn = Faraday.new(url: 'http://www.mapquestapi.com/') do |f|
-      f.params[:key] = ENV['MAPQUEST_API_KEY']
-    end
+    travel_time = FOODIE_FACADE.get_travel_time(start_params, end_params)
+    ##### use start and end params as is to get directions and travel time
+    # route_conn = Faraday.new(url: 'http://www.mapquestapi.com/') do |f|
+    #   f.params[:key] = ENV['MAPQUEST_API_KEY']
+    # end
+    #
+    # route_response = route_conn.get('directions/v2/route') do |f|
+    #   f.params[:from] = start_params
+    #   f.params[:to] = end_params
+    # end
+    #
+    # route_json = JSON.parse(route_response.body, symbolize_names: true)
+    #
+    # travel_time_sec = route_json[:route][:legs].first[:time] # in seconds
+    # travel_time_min = (travel_time_sec / 60) # in minutes (may not need)
+    # travel_time_hr = (travel_time_min / 60)
 
-    route_response = route_conn.get('directions/v2/route') do |f|
-      f.params[:from] = start_params
-      f.params[:to] = end_params
-    end
-
-    route_json = JSON.parse(route_response.body, symbolize_names: true)
-
-    travel_time_sec = route_json[:route][:legs].first[:time] # in seconds
-    travel_time_min = (travel_time_sec / 60) # in minutes (may not need)
-    travel_time_hr = (travel_time_min / 60)
-
-    # use end params and GeoService to obtain lat/long of end params
+    ##### use end params and GeoService to obtain lat/long of end params
     end_location = FORECAST_FACADE.get_location(end_params)
     end_coordinates = end_location.coordinates
 
-    # use lat/long for end params and search params via ZomatoService to obtain restaurant name and address
+    ##### use lat/long for end params and search params via ZomatoService to obtain restaurant name and address
     zomato_conn = Faraday.new(url: 'https://developers.zomato.com/') do |f|
       f.headers["user-key"] = ENV['ZOMATO_API_KEY']
     end
@@ -42,11 +43,12 @@ class Api::V1::FoodieController < ApplicationController
     restaurant_address = zomato_json[:restaurants].first[:restaurant][:location][:address]
 
 
-    # use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
+    ##### use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
     end_forecast = WEATHER_SERVICE.forecast_by_coordinates(end_coordinates)
     toa_forecast_data = end_forecast[:hourly][travel_time_hr - 1] # toa = time of arrival
     toa_forecast = HourlyForecast.new(toa_forecast_data)
 
+    ##### create response hash
     response = {
       "data": {
         "id": "null",
@@ -73,6 +75,8 @@ class Api::V1::FoodieController < ApplicationController
   end
 
   private
+
+  FOODIE_FACADE ||= FoodieFacade.new
 
   FORECAST_FACADE ||= ForecastFacade.new
   # if there was more time and this challenge was taking place in isolation without me having had already set up the facade specifically for the project, I would have named this differently since in this context it's only being used for geolocation
