@@ -12,6 +12,6 @@ class ForecastFacade
   def get_forecast(location)
     location = get_location(location)
     forecast_data = @weather_service.forecast_by_coordinates(location.coordinates)
-    Forecast.new(forecast_data)
+    Forecast.new(location, forecast_data)
   end
 end
