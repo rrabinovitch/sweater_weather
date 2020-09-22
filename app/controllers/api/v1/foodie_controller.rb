@@ -42,7 +42,7 @@ class Api::V1::FoodieController < ApplicationController
 
 
     # use lat/long for end params and time of arrival/travel time via WeatherService to access forecast at time of arrival
-    
+
 
 
     binding.pry
@@ -51,4 +51,5 @@ class Api::V1::FoodieController < ApplicationController
   private
 
   FORECAST_FACADE ||= ForecastFacade.new
+  # if there was more time and this challenge was taking place in isolation without me having had already set up the facade specifically for the project, I would have named this differently since in this context it's only being used for geolocation
 end
