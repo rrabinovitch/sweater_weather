@@ -12,7 +12,7 @@ RSpec.describe 'User registration request' do
 
     expect(response).to be_successful
     expect(response.status).to eq(201)
-    expect(response.content_type).to eq("application/json")
+    expect(response.content_type).to eq('application/json; charset=utf-8')
 
     user = User.last
 

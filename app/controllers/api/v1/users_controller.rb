@@ -1,7 +1,8 @@
 class Api::V1::UsersController < ApplicationController
   def create
     if successful_password_confirmation
-      User.create(user_params)
+      user = User.create(user_params)
+      render json: UserSerializer.new(user), status: :created
     end
   end
 
