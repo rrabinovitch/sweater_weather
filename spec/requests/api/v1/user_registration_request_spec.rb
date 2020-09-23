@@ -11,6 +11,7 @@ RSpec.describe 'User registration request' do
     post '/api/v1/users', params: JSON.generate(user_params), headers: headers
 
     expect(response).to be_successful
+    expect(response.status).to eq(201)
     expect(response.content_type).to eq("application/json")
 
     user = User.last
