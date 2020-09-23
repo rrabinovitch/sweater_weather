@@ -19,13 +19,13 @@ class DailyForecast
 
   def total_precipitation(daily_data)
     if daily_data[:rain].nil? && daily_data[:snow].nil?
-      @precipitation = 0
+      @precipitation = 0.0
     elsif daily_data[:rain].nil? && !daily_data[:snow].nil?
-      @precipitation = daily_data[:snow]
+      @precipitation = daily_data[:snow].to_f
     elsif !daily_data[:rain].nil? && daily_data[:snow].nil?
-      @precipitation = daily_data[:rain]
+      @precipitation = daily_data[:rain].to_f
     else
-      @precipitation = daily_data[:rain] + daily_data[:snow]
+      @precipitation = daily_data[:rain] + daily_data[:snow].to_f
     end
   end
 end
