@@ -89,6 +89,7 @@ RSpec.configure do |config|
     config.hook_into :webmock
     config.filter_sensitive_data('<MAPQUEST_API_KEY>') { ENV['MAPQUEST_API_KEY'] }
     config.filter_sensitive_data('<OPEN_WEATHER_API_KEY>') { ENV['OPEN_WEATHER_API_KEY'] }
+    config.filter_sensitive_data('<PEXELS_API_KEY>') { ENV['PEXELS_API_KEY'] }
     config.default_cassette_options = { re_record_interval: 7.days }
     config.configure_rspec_metadata!
   end
