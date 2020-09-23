@@ -1,5 +1,5 @@
 class PexelService
-  def img_by_location(location)
+  def self.img_by_location(location)
     response = conn.get('v1/search') do |f|
       f.params[:query] = location
       f.params[:per_page] = 1
@@ -10,13 +10,13 @@ class PexelService
 
   private
 
-  def conn
+  def self.conn
     Faraday.new(url: 'https://api.pexels.com/') do |f|
       f.headers['Authorization'] = ENV['PEXELS_API_KEY']
     end
   end
 
-  def parse_json(response)
+  def self.parse_json(response)
     JSON.parse(response.body, symbolize_names: true)
   end
 end
