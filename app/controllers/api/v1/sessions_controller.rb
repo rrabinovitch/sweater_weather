@@ -1,12 +1,18 @@
 class Api::V1::SessionsController < ApplicationController
   def create
     user = User.find_by(email: session_params[:email])
-    if user && user.authenticate(session_params[:password])
+    if session_params[:email].nil? && session_params[:password].nil?
+      render json: { error: 'Missing email and password'}, status: 401
+    elsif session_params[:email].nil?
+      render json: { error: 'Missing email' }, status: 401
+    elsif session_params[:password].nil?
+      render json: { error: 'Missing password' }, status: 401
+    elsif user && user.authenticate(session_params[:password])
       render json: UserSerializer.new(user)
     elsif user && !user.authenticate(session_params[:password])
-      render json: { body: 'Incorrect password' }, status: 401
+      render json: { error: 'Incorrect password' }, status: 401
     elsif user.nil?
-      render json: { body: 'User not found' }, status: 401
+      render json: { error: 'User not found' }, status: 401
     end
   end
 
