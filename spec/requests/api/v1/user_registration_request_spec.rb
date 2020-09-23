@@ -82,7 +82,20 @@ RSpec.describe 'User registration request' do
     expect(bad_request_json[:body]).to eq("Email can't be blank")
   end
 
-  it 'does not create a user if the password field is missing' do
+  it 'does not create a user if the password fields are missing' do
+    user_params = {email: "whatever@example.com"}
 
+    headers = { "CONTENT_TYPE" => "application/json" }
+
+    post '/api/v1/users', params: JSON.generate(user_params), headers: headers
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json; charset=utf-8')
+
+    expect(User.all.count).to eq(0)
+
+    bad_request_json = JSON.parse(response.body, symbolize_names: true)
+    expect(bad_request_json[:body]).to eq("Password can't be blank and Password can't be blank")
   end
 end
