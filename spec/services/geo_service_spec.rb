@@ -4,7 +4,7 @@ RSpec.describe GeoService do
   it 'can return location data' do
     VCR.use_cassette('Denver forecast') do
       geo_service = GeoService.new
-      results = geo_service.location_data('Denver, CO')
+      results = geo_service.location_data('denver,co')
 
       expect(results).to be_a(Hash)
       expect(results[:street]).to be_empty
