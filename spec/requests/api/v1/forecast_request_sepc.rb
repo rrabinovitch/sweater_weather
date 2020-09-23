@@ -9,11 +9,10 @@ RSpec.describe 'Forecast request' do
     end
   end
 
-  it 'returns a successfulJSON API v1 response' do
+  it 'returns a successful JSON API v1 response' do
     expect(response).to be_successful
     expect(response.status).to eq(200)
-    # expect(response.content_type).to eq('application/json')
-    # => returning "application/json; charset=utf-8" for some reason
+    expect(response.content_type).to eq('application/json; charset=utf-8')
     expect(@forecast_json[:data]).to have_key(:id)
     expect(@forecast_json[:data][:type]).to eq("forecast")
   end
