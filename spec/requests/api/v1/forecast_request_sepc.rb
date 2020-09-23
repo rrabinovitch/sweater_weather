@@ -11,6 +11,7 @@ RSpec.describe 'Forecast request' do
 
   it 'returns a successfulJSON API v1 response' do
     expect(response).to be_successful
+    expect(response.status).to eq(200)
     # expect(response.content_type).to eq('application/json')
     # => returning "application/json; charset=utf-8" for some reason
     expect(@forecast_json[:data]).to have_key(:id)
