@@ -43,7 +43,25 @@ RSpec.describe 'User registration request' do
   end
 
   it 'does not create a user if the email submitted is already in use' do
+    create(:user)
+    expect(User.all.count).to eq(1)
 
+    user_params = {email: "whatever@example.com",
+                password: "password",
+                password_confirmation: "password"}
+
+    headers = { "CONTENT_TYPE" => "application/json" }
+
+    post '/api/v1/users', params: JSON.generate(user_params), headers: headers
+
+    expect(response).to_not be_successful
+    expect(response.status).to eq(400)
+    expect(response.content_type).to eq('application/json; charset=utf-8')
+
+    expect(User.all.count).to eq(1)
+
+    bad_request_json = JSON.parse(response.body, symbolize_names: true)
+    expect(bad_request_json[:body]).to eq("Email has already been taken")
   end
 
   it 'does not create a user if the email field is missing' do
