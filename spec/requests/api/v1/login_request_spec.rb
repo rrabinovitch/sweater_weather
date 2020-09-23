@@ -36,22 +36,20 @@ RSpec.describe 'Login request' do
     expect(no_login_json[:body]).to eq('User not found')
   end
 
-  xit 'is unsuccessful if email and password do not match' do
+  it 'is unsuccessful if incorrect password submitted' do
     user = create(:user)
     login_params = {email: user.email,
-                  password: user.password}
+                  password: "wrong_password"}
 
     headers = { "CONTENT_TYPE" => "application/json" }
 
     post '/api/v1/sessions', params: JSON.generate(login_params), headers: headers
 
-    expect(response).to be_successful
-    expect(response.status).to eq(200)
+    expect(response).to_not be_successful
+    expect(response.status).to eq(401)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
-    login_json = JSON.parse(response.body, symbolize_names: true)
-    expect(login_json[:data][:type]).to eq("user")
-    expect(login_json[:data][:attributes][:email]).to eq(user.email)
-    expect(login_json[:data][:attributes][:api_key]).to eq(user.api_key)
+    no_login_json = JSON.parse(response.body, symbolize_names: true)
+    expect(no_login_json[:body]).to eq('Incorrect password')
   end
 end
