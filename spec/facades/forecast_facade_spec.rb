@@ -1,20 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe ForecastFacade do
-  before :each do
-    @forecast_facade = ForecastFacade.new
-  end
-
-  it '#get_location' do
+  it '::get_location' do
     VCR.use_cassette('Encino geolocation') do
-      location = @forecast_facade.get_location('Encino, CA')
+      location = ForecastFacade.get_location('Encino, CA')
       expect(location).to be_a(Location)
     end
   end
 
-  it '#get_forecast' do
+  it '::get_forecast' do
     VCR.use_cassette('Denver forecast') do
-      forecast = @forecast_facade.get_forecast('denver,co')
+      forecast = ForecastFacade.get_forecast('denver,co')
       expect(forecast).to be_a(Forecast)
       expect(forecast.location).to be_a(Location)
       expect(forecast.current).to be_a(CurrentForecast)
