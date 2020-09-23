@@ -30,11 +30,3 @@ RSpec.describe 'Backgrounds request' do
     # expect(background_json[:data][:attributes][:credit][:logo]).to be_a(String)
   end
 end
-
-
-{:photos=>
-  [{:url=>"https://www.pexels.com/photo/photo-of-people-holding-each-other-s-hands-3184423/",
-    :photographer=>"fauxels",
-    :photographer_url=>"https://www.pexels.com/@fauxels",
-    :photographer_id=>1281351,
-    :liked=>false}]}
