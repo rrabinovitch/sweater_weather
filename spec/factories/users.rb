@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :user do
-    email { "MyString" }
-    password_digest { "MyString" }
+    email { "whatever@example.com" }
+    password { "password" }
+    api_key { SecureRandom.uuid }
   end
 end
