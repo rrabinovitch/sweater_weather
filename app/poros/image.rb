@@ -1,13 +1,11 @@
 class Image
+  attr_reader :id, :location, :image_url, :credit
+
   def initialize(img_data, location)
     @id = nil
     @location = location
     @image_url = img_data[:url]
-    @credit = credit(img_data)
-  end
-
-  def credit(img_data)
-    { source: "pexels.com",
-      photographer: img_data[:photographer] }
+    @credit = { source: "pexels.com",
+                photographer: img_data[:photographer] }
   end
 end
