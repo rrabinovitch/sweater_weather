@@ -27,5 +27,6 @@ class DailyForecast
     else
       @precipitation = daily_data[:rain] + daily_data[:snow].to_f
     end
+    @precipitation.round(2)
   end
 end
