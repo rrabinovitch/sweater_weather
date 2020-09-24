@@ -44,14 +44,15 @@ RSpec.describe 'Road trip request' do
     headers = { "CONTENT_TYPE" => "application/json" }
 
     post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
-    road_trip_json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to_not be_successful
     expect(response.status).to eq(401)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
-    expect(no_login_json[:error]).to eq('Unsuccessful API key authentication')
+    expect(no_road_trip_json[:error]).to eq('Unsuccessful API key authentication')
+
+    expect(user.road_trips.count).to eq(0)
   end
 
   xit 'does not create a road trip and returns error if api key not included in request body' do
@@ -72,6 +73,8 @@ RSpec.describe 'Road trip request' do
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
     expect(no_login_json[:error]).to eq('Missing API key')
+
+    expect(user.road_trips.count).to eq(0)
   end
 
   xit 'does not create a road trip and returns error if origin param not included in request body' do
@@ -91,7 +94,9 @@ RSpec.describe 'Road trip request' do
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
-    expect(no_login_json[:error]).to eq('Missing origin info')
+    expect(no_login_json[:error]).to eq('Missing road trip origin')
+
+    expect(user.road_trips.count).to eq(0)
   end
 
   xit 'does not create a road trip and returns error if destination param not included in request body' do
@@ -111,6 +116,8 @@ RSpec.describe 'Road trip request' do
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
-    expect(no_login_json[:error]).to eq('Missing origin info')
+    expect(no_login_json[:error]).to eq('Missing road trip destination')
+
+    expect(user.road_trips.count).to eq(0)
   end
 end

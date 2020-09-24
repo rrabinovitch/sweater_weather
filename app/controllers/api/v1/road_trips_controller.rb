@@ -1,9 +1,11 @@
 class Api::V1::RoadTripsController < ApplicationController
   def create
-    origin = road_trip_params[:origin]
-    destination = road_trip_params[:destination]
     user = User.find_by(api_key: road_trip_params[:api_key])
-    if user
+    if user.nil?
+      render json: { error: 'Unsuccessful API key authentication' }, status: 401
+    elsif user
+      origin = road_trip_params[:origin]
+      destination = road_trip_params[:destination]
       road_trip = RoadTripFacade.get_road_trip(origin, destination, user)
       render json: RoadTripSerializer.new(road_trip), status: 201
       ### road_trip = RoadTrip.create(road_trip_params)
