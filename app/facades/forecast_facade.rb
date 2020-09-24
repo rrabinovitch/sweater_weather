@@ -1,6 +1,6 @@
 class ForecastFacade
   def self.get_location(location)
-    location_data = GeoService.location_data(location)
+    location_data = MapQuestService.location_data(location)
     Location.new(location_data)
   end
 

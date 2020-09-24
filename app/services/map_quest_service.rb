@@ -1,4 +1,4 @@
-class GeoService
+class MapQuestService
   def self.location_data(location)
     response = conn.get('geocoding/v1/address/') do |f|
       f.params[:location] = location

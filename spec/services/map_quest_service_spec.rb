@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe GeoService do
+RSpec.describe MapQuestService do
   it 'can return location data' do
     VCR.use_cassette('Denver forecast') do
-      results = GeoService.location_data('denver,co')
+      results = MapQuestService.location_data('denver,co')
 
       expect(results).to be_a(Hash)
       expect(results[:street]).to be_empty
