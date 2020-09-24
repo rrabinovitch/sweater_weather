@@ -1,6 +1,6 @@
 # Sweater Weather
 
-This repo serves as a solo, [final project](https://backend.turing.io/module3/projects/sweater_weather/) for Module 3 of [Turing School of Software & Design's Back-End program](https://backend.turing.io/).  
+This repo serves as a solo, [final project](https://backend.turing.io/module3/projects/sweater_weather/) for Module 3 of [Turing School of Software & Design's Back-End program](https://backend.turing.io/). The submission of this project entailed a techincal presentation including a live demo and discussion regarding of code organization as well as happy and sad path test coverage.  
 
 Sweater Weather is the back-end of a hypothetical application for planning road trips. The app allows users to see the current weather as well as the forecasted weather at their destination. This repo exposes the API that satisfies the (hypothetical) front-end team’s requirements.
 
@@ -187,3 +187,5 @@ Response body:
 
 ### POST road_trip: allows user to plan a road trip
 < to be filled in >
+
+**** add postman button
