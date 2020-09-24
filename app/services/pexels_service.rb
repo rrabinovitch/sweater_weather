@@ -1,4 +1,4 @@
-class PexelService
+class PexelsService
   def self.img_by_location(location)
     response = conn.get('v1/search') do |f|
       f.params[:query] = location
