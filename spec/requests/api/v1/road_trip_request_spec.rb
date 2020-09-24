@@ -17,13 +17,14 @@ RSpec.describe 'Road trip request' do
     expect(response.status).to eq(201)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
-    roadtrip = RoadTrip.last
+    road_trip = RoadTrip.last
 
-    expect(roadtrip_json[:data][:type]).to eq("road trip")
-    expect(roadtrip_json[:data][:id]).to eq(roadtrip.id.to_s)
-    expect(roadtrip_json[:data][:attributes][:origin]).to eq(roadtrip.origin)
-    expect(roadtrip_json[:data][:attributes][:destination]).to eq(roadtrip.destination)
-    # expect(roadtrip_json[:data][:attributes][:forecast][:temp]).to eq(???)
-    # expect(roadtrip_json[:data][:attributes][:forecast][:description]).to eq(???)
+    expect(road_trip_json[:data][:type]).to eq("road trip")
+    expect(road_trip_json[:data][:id]).to eq(road_trip.id.to_s)
+    expect(road_trip_json[:data][:attributes][:origin]).to eq(road_trip.origin)
+    expect(road_trip_json[:data][:attributes][:destination]).to eq(road_trip.destination)
+    expect(road_trip_json[:data][:attributes][:travel_time]).to eq(road_trip.travel_time)
+    expect(road_trip_json[:data][:attributes][:forecast_temp]).to eq(road_trip.forecast_temp)
+    expect(road_trip_json[:data][:attributes][:forecast][:description]).to eq(road_trip.forecast_description)
   end
 end
