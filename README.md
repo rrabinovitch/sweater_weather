@@ -55,7 +55,8 @@ To follow OOP principles, this project uses a facade design pattern and also imp
   * time: Unix UTC format
   * humidity: percentage
   * visitbility: meters
-  * precipitation: millimeters (combined value of rain and snow)  
+  * precipitation: millimeters (combined value of rain and snow)
+  * road trip travel time: hours
 
 ### Forecast: retrieves weather for a city
 Returns location info and current weather, as well as forecast info for the upcoming 8 hours and upcoming 5 days.
