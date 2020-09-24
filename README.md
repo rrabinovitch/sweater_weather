@@ -190,3 +190,4 @@ Response body:
 
 **** add postman button
 **** list technologies and lang+framework versions
+**** list all third party endpoints used
