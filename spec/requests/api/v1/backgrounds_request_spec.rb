@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Backgrounds request' do
-  it 'returns successful JSON API v1 response with image data and credits' do
+  it 'returns successful response with image data and credits' do
     get '/api/v1/backgrounds?location=denver,co'
     background_json = JSON.parse(response.body, symbolize_names: true)
 
@@ -25,8 +25,5 @@ RSpec.describe 'Backgrounds request' do
 
     expect(background_json[:data][:attributes][:credit]).to have_key(:photographer)
     expect(background_json[:data][:attributes][:credit][:photographer]).to be_a(String)
-
-    # expect(background_json[:data][:attributes][:credit]).to have_key(:logo)
-    # expect(background_json[:data][:attributes][:credit][:logo]).to be_a(String)
   end
 end
