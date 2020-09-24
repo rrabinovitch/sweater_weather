@@ -5,13 +5,24 @@ This repo serves as a solo, [final project](https://backend.turing.io/module3/pr
 Sweater Weather is the back-end of a hypothetical application for planning road trips. The app allows users to see the current weather as well as the forecasted weather at their destination. This repo exposes the API that satisfies the (hypothetical) front-end team’s requirements.
 
 ## Learning Goals
-* Expose an API that aggregates data from multiple external APIs: _`forecast` endpoint aggregates data from two third party APIs_
+* Expose an API that aggregates data from multiple external APIs:
+   * _`road trip` endpoint aggregates data from three third party end points ([MapQuest geocoding API](https://developer.mapquest.com/documentation/geocoding-api/), [MapQuest directions API](https://developer.mapquest.com/documentation/directions-api/), and [OpenWeather OneCall API](https://openweathermap.org/api/one-call-api)_
+   * _`forecast` endpoint aggregates data from two third party endpoints ([MapQuest geocoding API](https://developer.mapquest.com/documentation/geocoding-api/) and [OpenWeather OneCall API](https://openweathermap.org/api/one-call-api))_
 * Expose an API that requires an authentication token: _`roadtrip` endpoint requires API key included in request body_
 * Expose an API for CRUD functionality: _`users` endpoint creates User records_
 * Determine completion criteria based on the needs of other developers: _each issue in my [project board](https://github.com/rrabinovitch/sweater_weather/projects/1?fullscreen=true) outlines implementation details and includes screenshots of relevant info provided by the "front end"_
 * Research, select, and consume an API based on your needs as a developer: _[Pexels API](https://www.pexels.com/api/?locale=en-US) selected for `backgrounds` endpoint_
 
+## Future Iterations
+* Implement sad path conditions and testing for `forecast` and `road trip` endpoints when location, origin, or destination information cannot be found and when entered using unrecognizable format
+* DRY up `RoadTripsController` and `SessionsController` error message conditionals
+* [Background image extension](https://github.com/rrabinovitch/sweater_weather/projects/1#card-46078542)
+
 ## Local Setup
+**Version Requirements**
+* ruby 2.5.3
+* rails 5.2
+
 1. `git clone git@github.com:rrabinovitch/sweater_weather.git`
 2. `cd sweater_weather`
 3. `bundle install`
@@ -28,12 +39,15 @@ Sweater Weather is the back-end of a hypothetical application for planning road 
     PEXELS_API_KEY: <your pexels key>
     ```
 7. run `rails s` and explore the endpoints below!
+8. run the test suite: `bundle exec rspec`
+
 
 ## Endpoints
-* responses are all JSON API 1.0 Compliant
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/bd8f9f6f0083a657b732)
+* responses are JSON API 1.0 Compliant
 * GET requests require params submitted via query params
 * POST requests require params submitted via the request body
-* make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints
+* make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints  
 
 ### Forecast: retrieves weather for a city
 Returns location info and current weather, as well as forecast info for the upcoming 8 hours and upcoming 5 days.
@@ -131,7 +145,7 @@ Response body:
 Returns new user's id, email, and api key.
 
 Request: `POST localhost:3000/api/v1/users` 
-* body must include `email`, `password`, and `password_confirmation`
+* body must include `email`, `password`, and `password_confirmation` params
 * you will receive a 400 bad request error if an email is already in use, if there are any missing fields, and/or if the password fields do not match
 
 #### Example:
@@ -160,7 +174,7 @@ Response body:
 Returns authorized user's id, email, and api key.
 
 Request: `POST localhost:3000/api/v1/sessions` 
-* body must include `email` and `password`
+* body must include `email` and `password` params
 * you will receive a 401 unauthorized error if bad credentials are submitted
 
 #### Example:
@@ -184,11 +198,62 @@ Response body:
 }
 ```
 
-
 ### POST road_trip: allows user to plan a road trip
-< to be filled in >
+Returns road trip info: origin, destination, travel time, forecast temperature, forecast description, and user that road trip was created by
 
-**** add postman button
-**** list technologies and lang+framework versions
-**** list all third party endpoints used
-**** writeup about use of facades, services, and POROs?
+Request: `POST localhost:3000/api/v1/road_trip` 
+* body must include `origin`, `destination`, and `api_key` params
+* you will receive a 401 unauthorized error if bad credentials are submitted
+
+#### Example:
+Request: `POST localhost:3000/api/v1/road_trip`  
+Request body:
+```
+{"origin": "Denver, CO",
+   "destination": "Pueblo, CO",
+   "api_key": "9167e13a-9fb2-49c9-8165-c64c2ff335b1"}
+```
+Response body:
+```
+{
+    "data": {
+        "id": "1",
+        "type": "road_trip",
+        "attributes": {
+            "origin": "Denver, CO",
+            "destination": "Pueblo, CO",
+            "travel_time": 17,
+            "forecast_temp": 86,
+            "forecast_description": "clear sky",
+            "user_id": 1
+        }
+    }
+}
+```
+## Tools
+**Version Requirements**
+* ruby 2.5.3
+* rails 5.2
+
+**Gems**
+* Faraday
+* Figaro
+* BCrypt
+* FastJSON
+
+**Testing**
+* SimpleCov - yielding 100% coverage
+* RSpec
+* WebMock
+* VCR
+* ShouldaMatchers
+* FactoryBot
+
+**Third Party APIs and Endpoints**
+* MapQuest
+   * [Directions API - GET route](https://developer.mapquest.com/documentation/directions-api/route/get/)
+   * [GeoCoding API - GET geocode address](https://developer.mapquest.com/documentation/geocoding-api/address/get/)
+* OpenWeather
+   * [OneCall API - GET forecast by coordinates](https://openweathermap.org/api/one-call-api)
+* Pexels
+   * [Image search API - GET image](https://www.pexels.com/api/documentation/#photos-search)
