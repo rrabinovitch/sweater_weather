@@ -1,6 +1,6 @@
-class CreateRoadTripsTable < ActiveRecord::Migration[6.0]
+class CreateRoadTrips < ActiveRecord::Migration[6.0]
   def change
-    create_table :road_trips_tables do |t|
+    create_table :road_trips do |t|
       t.string :origin
       t.string :destination
       t.integer :travel_time
