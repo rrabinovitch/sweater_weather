@@ -4,14 +4,14 @@ RSpec.describe 'Road trip request' do
   it 'returns successful response with origin, destination, travel time, and general forecast info' do
     user = create(:user)
 
-    roadtrip_params = {origin: "Denver, CO",
+    road_trip_params = {origin: "Denver, CO",
                     destination: "Pueblo, CO",
                     api_key: user.api_key}
 
     headers = { "CONTENT_TYPE" => "application/json" }
 
-    post '/api/v1/road_trip', params: JSON.generate(roadtrip_params), headers: headers
-    roadtrip_json = JSON.parse(response.body, symbolize_names: true)
+    post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
+    road_trip_json = JSON.parse(response.body, symbolize_names: true)
 
     expect(response).to be_successful
     expect(response.status).to eq(201)
