@@ -231,7 +231,7 @@ Response body:
         "attributes": {
             "origin": "Denver, CO",
             "destination": "Pueblo, CO",
-            "travel_time": 17,
+            "travel_time": 1.7,
             "forecast_temp": 86,
             "forecast_description": "clear sky",
             "user_id": 1
