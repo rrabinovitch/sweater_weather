@@ -16,11 +16,13 @@ RSpec.describe MapQuestService do
   end
 
   it 'can return directions data' do
-    origin = 'Denver, CO'
-    destination = 'Pueblo, CO'
-    results = MapQuestService.directions_data(origin, destination)
+    VCR.use_cassette('Denver to Pueblo road trip') do
+      origin = 'Denver, CO'
+      destination = 'Pueblo, CO'
+      results = MapQuestService.directions_data(origin, destination)
 
-    expect(results).to be_a(Hash)
-    expect(results[:time]).to be_an(Integer)
+      expect(results).to be_a(Hash)
+      expect(results[:time]).to be_an(Integer)
+    end
   end
 end
