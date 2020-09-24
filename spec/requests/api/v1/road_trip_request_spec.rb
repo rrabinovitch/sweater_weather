@@ -76,7 +76,7 @@ RSpec.describe 'Road trip request' do
     expect(user.road_trips.count).to eq(0)
   end
 
-  xit 'does not create a road trip and returns error if origin param not included in request body' do
+  it 'does not create a road trip and returns error if origin param not included in request body' do
     user = create(:user)
     expect(user.road_trips.count).to eq(0)
 
@@ -97,12 +97,11 @@ RSpec.describe 'Road trip request' do
     expect(user.road_trips.count).to eq(0)
   end
 
-  xit 'does not create a road trip and returns error if destination param not included in request body' do
+  it 'does not create a road trip and returns error if origin and destination params not included in request body' do
     user = create(:user)
     expect(user.road_trips.count).to eq(0)
 
-    road_trip_params = {origin: "Denver, CO",
-                    api_key: user.api_key}
+    road_trip_params = {api_key: user.api_key}
 
     headers = { "CONTENT_TYPE" => "application/json" }
 
@@ -113,7 +112,7 @@ RSpec.describe 'Road trip request' do
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
-    expect(no_road_trip_json[:error]).to eq('Missing road trip destination')
+    expect(no_road_trip_json[:error]).to eq('Missing road trip origin and destination')
 
     expect(user.road_trips.count).to eq(0)
   end
