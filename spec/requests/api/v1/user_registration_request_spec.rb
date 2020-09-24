@@ -96,6 +96,6 @@ RSpec.describe 'User registration request' do
     expect(User.all.count).to eq(0)
 
     bad_request_json = JSON.parse(response.body, symbolize_names: true)
-    expect(bad_request_json[:body]).to eq("Password can't be blank and Password can't be blank")
+    expect(bad_request_json[:body]).to eq("Password can't be blank")
   end
 end
