@@ -5,8 +5,7 @@ class RoadTripFacade
     travel_time_min = (travel_time_sec.to_f / 60)
     travel_time_hr = (travel_time_min.to_f / 60)
     destination_coordinates = MapQuestService.location_data(destination)[:latLng]
-      # decide later whether to refactor and create Location POROs out of origin and destination
-      # only destination coordinates are needed
+
     forecast_data = WeatherService.forecast_by_coordinates(destination_coordinates)
 
     arrival_forecast = forecast_data[:hourly][travel_time_hr.round - 1]
