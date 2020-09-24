@@ -1,8 +1,11 @@
 class Api::V1::RoadTripsController < ApplicationController
   def create
+    origin = road_trip_params[:origin]
+    destination = road_trip_params[:destination]
     user = User.find_by(api_key: road_trip_params[:api_key])
     if user
-      # binding.pry
+      road_trip = RoadTripFacade.get_road_trip(origin, destination, user)
+      binding.pry
 
       ### road_trip = RoadTrip.create(road_trip_params)
 
