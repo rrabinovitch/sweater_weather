@@ -5,8 +5,7 @@ class Api::V1::RoadTripsController < ApplicationController
     user = User.find_by(api_key: road_trip_params[:api_key])
     if user
       road_trip = RoadTripFacade.get_road_trip(origin, destination, user)
-      binding.pry
-
+      render json: RoadTripSerializer.new(road_trip), status: 201
       ### road_trip = RoadTrip.create(road_trip_params)
 
       # try to create road trip
