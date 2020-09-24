@@ -1,8 +1,11 @@
 # Sweater Weather
+**Built by Ruthie Rabinovitch**: [LinkedIn](https://www.linkedin.com/in/ruthie-r/), [Turing alumni portfolio](https://alumni.turing.io/alumni/ruthie-rabinovitch)
 
 This repo serves as a solo, [final project](https://backend.turing.io/module3/projects/sweater_weather/) for Module 3 of [Turing School of Software & Design's Back-End program](https://backend.turing.io/). The submission of this project entailed a techincal presentation including a live demo and discussion regarding of code organization as well as happy and sad path test coverage.  
 
 Sweater Weather is the back-end of a hypothetical application for planning road trips. The app allows users to see the current weather as well as the forecasted weather at their destination. This repo exposes the API that satisfies the (hypothetical) front-end team’s requirements.
+
+To follow OOP principles, this project uses a facade design pattern and also implements POROs - yielding skinnier controllers and DRYer code, better following SPR, and only sending objects to serializers.
 
 ## Learning Goals
 * Expose an API that aggregates data from multiple external APIs:
@@ -41,13 +44,18 @@ Sweater Weather is the back-end of a hypothetical application for planning road 
 7. run `rails s` and explore the endpoints below!
 8. run the test suite: `bundle exec rspec`
 
-
 ## Endpoints
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/bd8f9f6f0083a657b732)
 * responses are JSON API 1.0 Compliant
 * GET requests require params submitted via query params
 * POST requests require params submitted via the request body
-* make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints  
+* make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints
+* measurement units
+  * temperature: Fahrenheit
+  * time: Unix UTC format
+  * humidity: percentage
+  * visitbility: meters
+  * precipitation: millimeters (combined value of rain and snow)  
 
 ### Forecast: retrieves weather for a city
 Returns location info and current weather, as well as forecast info for the upcoming 8 hours and upcoming 5 days.
