@@ -1,4 +1,4 @@
-class GeoService
+class MapQuestService
   def self.location_data(location)
     response = conn.get('geocoding/v1/address/') do |f|
       f.params[:location] = location
@@ -6,6 +6,15 @@ class GeoService
     end
 
     parse_json(response)[:results][0][:locations][0]
+  end
+
+  def self.directions_data(origin, destination)
+    response = conn.get('directions/v2/route') do |f|
+      f.params[:from] = origin
+      f.params[:to] = destination
+    end
+
+    parse_json(response)[:route][:legs].first
   end
 
   private

@@ -39,7 +39,7 @@ RSpec.describe 'User registration request' do
     expect(User.all.count).to eq(0)
 
     bad_request_json = JSON.parse(response.body, symbolize_names: true)
-    expect(bad_request_json[:body]).to eq("Password confirmation doesn't match Password")
+    expect(bad_request_json[:error]).to eq("Password confirmation doesn't match Password")
   end
 
   it 'does not create a user if the email submitted is already in use' do
@@ -61,7 +61,7 @@ RSpec.describe 'User registration request' do
     expect(User.all.count).to eq(1)
 
     bad_request_json = JSON.parse(response.body, symbolize_names: true)
-    expect(bad_request_json[:body]).to eq("Email has already been taken")
+    expect(bad_request_json[:error]).to eq("Email has already been taken")
   end
 
   it 'does not create a user if the email field is missing' do
@@ -79,7 +79,7 @@ RSpec.describe 'User registration request' do
     expect(User.all.count).to eq(0)
 
     bad_request_json = JSON.parse(response.body, symbolize_names: true)
-    expect(bad_request_json[:body]).to eq("Email can't be blank")
+    expect(bad_request_json[:error]).to eq("Email can't be blank")
   end
 
   it 'does not create a user if the password fields are missing' do
@@ -96,6 +96,6 @@ RSpec.describe 'User registration request' do
     expect(User.all.count).to eq(0)
 
     bad_request_json = JSON.parse(response.body, symbolize_names: true)
-    expect(bad_request_json[:body]).to eq("Password can't be blank and Password can't be blank")
+    expect(bad_request_json[:error]).to eq("Password can't be blank")
   end
 end

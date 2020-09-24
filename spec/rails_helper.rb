@@ -84,7 +84,7 @@ RSpec.configure do |config|
   end
   # shoulda matchers configuration
   VCR.configure do |config|
-    config.allow_http_connections_when_no_cassette = true
+    # config.allow_http_connections_when_no_cassette = true
     config.cassette_library_dir = "spec/fixtures/vcr_cassettes"
     config.hook_into :webmock
     config.filter_sensitive_data('<MAPQUEST_API_KEY>') { ENV['MAPQUEST_API_KEY'] }
