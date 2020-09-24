@@ -8,6 +8,8 @@ class RoadTripFacade
     create_road_trip_for_user(origin, destination, travel_time_hr, arrival_forecast, user)
   end
 
+  private
+
   def self.create_road_trip_for_user(origin, destination, travel_time, forecast, user)
     user.road_trips.create(origin: origin, destination: destination, travel_time: travel_time,
       forecast_temp: forecast[:temp], forecast_description: forecast[:description])
