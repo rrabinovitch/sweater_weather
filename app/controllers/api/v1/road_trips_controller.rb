@@ -2,13 +2,13 @@ class Api::V1::RoadTripsController < ApplicationController
   def create
     user = User.find_by(api_key: road_trip_params[:api_key])
     if road_trip_params[:origin].nil? && road_trip_params[:destination].nil?
-      render json: { error: 'Missing road trip origin and destination' }, status: 401
+      render json: { error: 'Missing road trip origin and destination' }, status: 400
     elsif road_trip_params[:origin].nil?
-      render json: { error: 'Missing road trip origin' }, status: 401
+      render json: { error: 'Missing road trip origin' }, status: 400
     elsif road_trip_params[:destination].nil?
-      render json: { error: 'Missing road trip destination' }, status: 401
+      render json: { error: 'Missing road trip destination' }, status: 400
     elsif road_trip_params[:api_key].nil?
-      render json: { error: 'Missing API key' }, status: 401
+      render json: { error: 'Missing API key' }, status: 400
     elsif user.nil?
       render json: { error: 'Unsuccessful API key authentication' }, status: 401
     elsif user

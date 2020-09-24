@@ -69,7 +69,7 @@ RSpec.describe 'Road trip request' do
     post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
@@ -90,7 +90,7 @@ RSpec.describe 'Road trip request' do
     post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
@@ -111,7 +111,7 @@ RSpec.describe 'Road trip request' do
     post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
@@ -131,7 +131,7 @@ RSpec.describe 'Road trip request' do
     post '/api/v1/road_trip', params: JSON.generate(road_trip_params), headers: headers
 
     expect(response).to_not be_successful
-    expect(response.status).to eq(401)
+    expect(response.status).to eq(400)
     expect(response.content_type).to eq('application/json; charset=utf-8')
 
     no_road_trip_json = JSON.parse(response.body, symbolize_names: true)
