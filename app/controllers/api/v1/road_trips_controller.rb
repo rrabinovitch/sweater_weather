@@ -1,6 +1,8 @@
 class Api::V1::RoadTripsController < ApplicationController
   def create
-    # if api key is authenticated
+    user = User.find_by(api_key: road_trip_params[:api_key])
+    if user
+      road_trip = RoadTrip.create(road_trip_params)
       # try to create road trip
       # if road trip is successfully created
         # render json road trip info and 201 status
@@ -9,7 +11,7 @@ class Api::V1::RoadTripsController < ApplicationController
       # end
     # else
       # render json error message and 401 unauthorized status
-    # end
+    end
     binding.pry
   end
 
