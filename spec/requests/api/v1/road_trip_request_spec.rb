@@ -29,7 +29,7 @@ RSpec.describe 'Road trip request' do
     expect(road_trip_json[:data][:attributes][:travel_time]).to eq(road_trip.travel_time)
     expect(road_trip_json[:data][:attributes][:forecast_temp]).to eq(road_trip.forecast_temp)
     expect(road_trip_json[:data][:attributes][:forecast_description]).to eq(road_trip.forecast_description)
+    expect(road_trip_json[:data][:attributes][:user_id]).to eq(road_trip.user_id)
     expect(road_trip_json[:data][:attributes]).to_not have_key(:api_key)
-    # expect(road_trip_json[:data][:relationships])
   end
 end
