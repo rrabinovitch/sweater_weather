@@ -39,7 +39,7 @@ RSpec.describe 'Road trip request' do
   end
 
   it 'returns successful response with another destination and origin' do
-    # VCR.use_cassette('Denver to Pueblo road trip') do
+    VCR.use_cassette('Los Angeles to NYC road trip') do
       user = create(:user)
       expect(user.road_trips.count).to eq(0)
 
@@ -71,8 +71,7 @@ RSpec.describe 'Road trip request' do
         expect(road_trip_json[:data][:attributes][:forecast_description]).to be_a(String)
         expect(road_trip_json[:data][:attributes][:user_id]).to eq(road_trip.user_id)
         expect(road_trip_json[:data][:attributes]).to_not have_key(:api_key)
-    # end
-    binding.pry
+    end
   end
 
   it 'does not create a road trip and returns error if api key is not associated with actual user' do
