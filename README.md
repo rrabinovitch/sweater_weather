@@ -207,7 +207,7 @@ Response body:
 }
 ```
 
-### POST road_trip: allows user to plan a road trip
+### Road trip: allows user to plan a road trip
 Returns road trip info: origin, destination, travel time, forecast temperature, forecast description, and user that road trip was created by
 
 Request: `POST localhost:3000/api/v1/road_trip` 
