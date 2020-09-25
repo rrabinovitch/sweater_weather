@@ -5,7 +5,7 @@ class RoadTripFacade
     destination_coordinates = MapQuestService.location_data(destination)[:latLng]
     forecast_data = WeatherService.forecast_by_coordinates(destination_coordinates)
     arrival_forecast = assemble_arrival_forecast(forecast_data[:hourly][travel_time_hr.round - 1])
-    create_road_trip_for_user(origin, destination, travel_time_hr, arrival_forecast, user)
+    create_road_trip_for_user(origin, destination, travel_time_hr.round(2), arrival_forecast, user)
   end
 
   private
