@@ -25,6 +25,11 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: postgres
           RAILS_ENV: test
+        - image: circleci/postgres:9.5-alpine
+          environment:
+            POSTGRES_USER: postgres
+            POSTGRES_DB: sweater_weather_production
+            POSTGRES_PASSWORD: ""
     working_directory: ~/sweater_weather
     executor: ruby/default
     steps:
