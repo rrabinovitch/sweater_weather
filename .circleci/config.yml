@@ -24,6 +24,7 @@ jobs:
       - checkout
       ## Bundle install dependencies
       - run: gem install bundler -v 2.1.4
+      - run: bundle install
       # - ruby/bundle-install
       ## Database setup
       - run: bundle exec rake db:create db:schema:load
