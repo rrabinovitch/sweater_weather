@@ -28,7 +28,7 @@ jobs:
       - image: circleci/postgres:12.1
         environment:
           POSTGRES_USER: postgres
-          POSTGRES_DB: sweater_weather_production
+          POSTGRES_DB: sweater_weather_test
           POSTGRES_PASSWORD: ENV['SWEATER_WEATHER_DB_PASSWORD']
     working_directory: ~/sweater_weather
     executor: ruby/default
