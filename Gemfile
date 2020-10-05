@@ -57,3 +57,5 @@ gem 'faraday'
 gem 'figaro'
 gem 'fast_jsonapi'
 gem 'table_print'
+
+gem 'rspec_junit_formatter'
