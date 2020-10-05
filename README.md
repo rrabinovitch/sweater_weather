@@ -1,6 +1,8 @@
 # Sweater Weather
-**Built by Ruthie Rabinovitch**: [LinkedIn](https://www.linkedin.com/in/ruthie-r/), [Turing alumni portfolio](https://alumni.turing.io/alumni/ruthie-rabinovitch)
+**Built by Ruthie Rabinovitch**: [LinkedIn](https://www.linkedin.com/in/ruthie-r/), [Turing alumni portfolio](https://alumni.turing.io/alumni/ruthie-rabinovitch)  
+**Continuous integration and deployment with CircleCI:** [![rrabinovitch](https://circleci.com/gh/rrabinovitch/sweater_weather.svg?style=svg)](https://circleci.com/gh/rrabinovitch/sweater_weather)  
 
+## About
 This repo serves as a solo, [final project](https://backend.turing.io/module3/projects/sweater_weather/) for Module 3 of [Turing School of Software & Design's Back-End program](https://backend.turing.io/). The submission of this project entailed a techincal presentation including a live demo and discussion regarding of code organization as well as happy and sad path test coverage.  
 
 Sweater Weather is the back-end of a hypothetical application for planning road trips. The app allows users to see the current weather as well as the forecasted weather at their destination. This repo exposes the API that satisfies the (hypothetical) front-end team’s requirements.
@@ -46,10 +48,12 @@ To follow OOP principles, this project uses a facade design pattern and also imp
 
 ## Endpoints
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/bd8f9f6f0083a657b732)
+* base url:
+  * use https://sweaterweather-app.herokuapp.com/api/v1 without local setup, **OR**
+  * use localhost:3000/api/v1 and make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints
 * responses are JSON API 1.0 Compliant
 * GET requests require params submitted via query params
 * POST requests require params submitted via the request body
-* make sure to follow the local set up instructions above and run `rails s` before consuming these endpoints
 * measurement units
   * temperature: Fahrenheit
   * time: Unix UTC format
@@ -240,7 +244,9 @@ Response body:
 }
 ```
 ## Tools
-**Version Requirements**
+Sweater Weather is written in Ruby with Ruby on Rails, uses a postgresql database, and is hosted on Heroku with continuous integration and deployment executed via CircleCI.
+
+**Language and Framework Versions**
 * ruby 2.5.3
 * rails 5.2
 
