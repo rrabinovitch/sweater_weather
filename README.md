@@ -1,5 +1,5 @@
 # Sweater Weather
-**Built by Ruthie Rabinovitch**: [LinkedIn](https://www.linkedin.com/in/ruthie-r/), [Turing alumni portfolio](https://alumni.turing.io/alumni/ruthie-rabinovitch)  
+**Built by Ruthie Rabinovitch**: [LinkedIn](https://www.linkedin.com/in/ruthie-r/) | [Turing alumni portfolio](https://alumni.turing.io/alumni/ruthie-rabinovitch)  
 **Continuous integration and deployment with CircleCI:** [![rrabinovitch](https://circleci.com/gh/rrabinovitch/sweater_weather.svg?style=svg)](https://circleci.com/gh/rrabinovitch/sweater_weather)  
 
 ## About
