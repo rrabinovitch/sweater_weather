@@ -31,7 +31,7 @@ To follow OOP principles, this project uses a facade design pattern and also imp
 1. `git clone git@github.com:rrabinovitch/sweater_weather.git`
 2. `cd sweater_weather`
 3. `bundle install`
-4. `rails db:{create,migrate}
+4. `rails db:{create,migrate}`
 5. `figaro install` (this will generate a gitignored `config/application.yml` file)
 6. obtain API keys from the following services:
     * [MapQuest](https://developer.mapquest.com/plan_purchase/steps/business_edition/business_edition_free/register)
