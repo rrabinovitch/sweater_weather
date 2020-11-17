@@ -272,3 +272,4 @@ Sweater Weather is written in Ruby with Ruby on Rails, uses a postgresql databas
    * [OneCall API - GET forecast by coordinates](https://openweathermap.org/api/one-call-api)
 * Pexels
    * [Image search API - GET image](https://www.pexels.com/api/documentation/#photos-search)
+
