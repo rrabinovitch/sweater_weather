@@ -47,8 +47,8 @@ end
 group :test do
   gem 'simplecov'
   gem 'shoulda-matchers'
-  gem 'webmock'
-  gem 'vcr'
+  # gem 'webmock'
+  # gem 'vcr'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -59,3 +59,4 @@ gem 'fast_jsonapi'
 gem 'table_print'
 
 gem 'rspec_junit_formatter'
+gem 'ddtrace'
