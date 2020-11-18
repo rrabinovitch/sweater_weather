@@ -1,9 +1,6 @@
-require 'rspec'
-require 'ddtrace'
-
 Datadog.configure do |c|
   # This will activate auto-instrumentation for Rails
   c.use :rails
-  # Configure default RSpec integration
-  c.use :rspec, options
+  c.use :active_model_serializers, {analytics_enabled: true}
+  c.use :faraday, {analytics_enabled: true}
 end
