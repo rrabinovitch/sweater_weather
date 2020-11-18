@@ -3,7 +3,7 @@ class HourlyForecast
 
   def initialize(hourly_data)
     @datetime = hourly_data[:dt]
-    @temp = hourly_data[:temp]
+    @temp = hourly_data[:temp].to_f
   end
 
   def self.eight_hr_forecast(hourly_data)

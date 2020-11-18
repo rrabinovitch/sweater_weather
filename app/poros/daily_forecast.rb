@@ -5,8 +5,8 @@ class DailyForecast
     @datetime = daily_data[:dt]
     @description = daily_data[:weather][0][:description]
     @precipitation = total_precipitation(daily_data)
-    @high_temp = daily_data[:temp][:max]
-    @low_temp = daily_data[:temp][:min]
+    @high_temp = daily_data[:temp][:max].to_f
+    @low_temp = daily_data[:temp][:min].to_f
   end
 
   def self.five_day_forecast(daily_data)
