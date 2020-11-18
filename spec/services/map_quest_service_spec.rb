@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe MapQuestService do
   it 'can return location data' do
-    VCR.use_cassette('Denver forecast') do
+    # VCR.use_cassette('Denver forecast') do
       results = MapQuestService.location_data('denver,co')
 
       expect(results).to be_a(Hash)
@@ -12,17 +12,17 @@ RSpec.describe MapQuestService do
       expect(results[:latLng]).to be_a(Hash)
       expect(results[:latLng][:lat]).to be_a(Float)
       expect(results[:latLng][:lng]).to be_a(Float)
-    end
+    # end
   end
 
   it 'can return directions data' do
-    VCR.use_cassette('Denver to Pueblo road trip') do
+    # VCR.use_cassette('Denver to Pueblo road trip') do
       origin = 'Denver, CO'
       destination = 'Pueblo, CO'
       results = MapQuestService.directions_data(origin, destination)
 
       expect(results).to be_a(Hash)
       expect(results[:time]).to be_an(Integer)
-    end
+    # end
   end
 end

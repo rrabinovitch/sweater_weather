@@ -2,11 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Forecast request' do
   before :each do
-    VCR.use_cassette('Denver forecast') do
+    # VCR.use_cassette('Denver forecast') do
       get '/api/v1/forecast?location=denver,co'
       @forecast_json = JSON.parse(response.body, symbolize_names: true)
       @attributes = @forecast_json[:data][:attributes]
-    end
+    # end
   end
 
   it 'returns a successful JSON API v1 response' do

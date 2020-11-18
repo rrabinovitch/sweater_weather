@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe Forecast do
   it 'has attributes' do
-    VCR.use_cassette('Denver forecast') do
+    # VCR.use_cassette('Denver forecast') do
       location_data = {:adminArea5=>"Denver",
         :adminArea3=>"CO",
         :adminArea1=>"US",
@@ -22,6 +22,6 @@ RSpec.describe Forecast do
       expect(forecast.hourly.first).to be_an(HourlyForecast)
       expect(forecast.daily.size).to eq(5)
       expect(forecast.daily.first).to be_a(DailyForecast)
-    end
+    # end
   end
 end
