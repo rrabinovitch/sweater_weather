@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Sun, 04 Oct 2020 21:04:03 GMT
+      - Wed, 18 Nov 2020 15:57:48 GMT
       Content-Type:
       - application/json;charset=UTF-8
       Content-Length:
@@ -35,7 +35,7 @@ http_interactions:
       Geocodetransactioncount:
       - '1'
       Last-Modified:
-      - Sun, 04 Oct 2020 21:04:03 GMT
+      - Wed, 18 Nov 2020 15:57:48 GMT
       Pragma:
       - no-cache
       Reversegeocodetransactioncount:
@@ -43,7 +43,7 @@ http_interactions:
       Server:
       - Apache-Coyote/1.1
       Set-Cookie:
-      - JSESSIONID=2CF5BE899F46D3D42137D059E3B964F2; Path=/; HttpOnly
+      - JSESSIONID=FE48D34A36CECEB0F1BB3FD29ECA0E37; Path=/; HttpOnly
       Status:
       - success
       Transactionweight:
@@ -54,6 +54,6 @@ http_interactions:
         Inc.","imageUrl":"http://api.mqcdn.com/res/mqlogo.gif","imageAltText":"\u00A9
         2020 MapQuest, Inc."},"messages":[]},"options":{"maxResults":1,"thumbMaps":true,"ignoreLatLngInput":false},"results":[{"providedLocation":{"location":"Encino,
         CA"},"locations":[{"street":"","adminArea6":"","adminArea6Type":"Neighborhood","adminArea5":"Encino","adminArea5Type":"City","adminArea4":"Los
-        Angeles County","adminArea4Type":"County","adminArea3":"CA","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282014975","unknownInput":"","type":"s","latLng":{"lat":34.159199,"lng":-118.500298},"displayLatLng":{"lat":34.159199,"lng":-118.500298},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=<MAPQUEST_API_KEY>&type=map&size=225,160&locations=34.159199,-118.500298|marker-sm-50318A-1&scalebar=true&zoom=12&rand=1895861801"}]}]}'
-  recorded_at: Sun, 04 Oct 2020 21:04:03 GMT
+        Angeles County","adminArea4Type":"County","adminArea3":"CA","adminArea3Type":"State","adminArea1":"US","adminArea1Type":"Country","postalCode":"","geocodeQualityCode":"A5XAX","geocodeQuality":"CITY","dragPoint":false,"sideOfStreet":"N","linkId":"282014975","unknownInput":"","type":"s","latLng":{"lat":34.159199,"lng":-118.500298},"displayLatLng":{"lat":34.159199,"lng":-118.500298},"mapUrl":"http://www.mapquestapi.com/staticmap/v5/map?key=<MAPQUEST_API_KEY>&type=map&size=225,160&locations=34.159199,-118.500298|marker-sm-50318A-1&scalebar=true&zoom=12&rand=1225788447"}]}]}'
+  recorded_at: Wed, 18 Nov 2020 15:57:48 GMT
 recorded_with: VCR 6.0.0
